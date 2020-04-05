@@ -7,6 +7,7 @@
         }
     ],
     "require": {
-        "monolog/monolog": "^2.0"
+        "monolog/monolog": "^2.0",
+        "namnv609/php-rest-countries": "^1.0"
     }
 }
