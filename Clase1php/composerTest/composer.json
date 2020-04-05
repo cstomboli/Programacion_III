@@ -1,0 +1,13 @@
+{
+    "name": "lenovox1carbon/composer-test",
+    "authors": [
+        {
+            "name": "Carolina Stomboli",
+            "email": "carostomboli@hotmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^2.0",
+        "namnv609/php-rest-countries": "^1.0"
+    }
+}
