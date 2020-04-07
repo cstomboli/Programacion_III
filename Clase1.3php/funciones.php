@@ -11,7 +11,7 @@ class Persona{
     }
     function mostrar($name)
     {
-        echo "Hola .$this ->name";
+        echo "Hola ".$this ->name;
     }
     
 

@@ -2,8 +2,8 @@
 
 require 'funciones.php';
 
-//$name = "juana de arco";
-$persona = new Persona("juana");
-//echo "Hola  $name";
-//mostrar($name);
-echo $persona ->mostrar($persona);
+$persona = new Persona("tita");
+
+//echo "Hola $persona<br>"; // no puedo mostrar un Objeto.
+//mostrar($persona);           //Asi tampoco anda
+$persona ->mostrar($persona);
