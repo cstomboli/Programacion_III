@@ -1,40 +1,39 @@
 <?php
 
-include 'pais.php';
+include 'paises.php';
 
-class InfoPais extends Pais{
+class InfoPais extends Paises{
     
-    public $name;
+    public $todos;
+    public $completo;
+    public $nombre;
     public $capital;
     public $region;
 
-    public function __construct($name)
+    public function __construct($nombre)
     {
-        parent::__construct($name);
-        
-        $this->name= $this->paises->name;
-        //echo"nombre$name";
-        //var_dump($this->name);
-        foreach ($this->paises as $buscado)
+        parent::__construct();
+        $this->todos= $this->paises;
+
+        foreach ($this->todos as $buscado)
         {
+
             if($buscado->name == $nombre)
             {
-              //  var_dump($buscado);
-                //$this->nombre=$buscado->name; 
-                //$this->capital=$buscado->capital; 
-
-               //var_dump("ESTOY EN EL IF ",$this->nombre);       // Muestra Argentina1
+                $this->completo=$buscado;
+                $this->nombre=$buscado->name; 
+                $this->capital=$buscado->capital; 
+                $this->region=$buscado->region; 
             }
         }
-
-
-
-        $this->name = $name;
-        $this->capital =$capital;
-        $this->region=$region;
     }
     public function Mostrar()
     {
-        echo"Nombre: $name, capital: $capital";
+        var_dump($this->completo);
+    }
+
+    public function MostrarInfo()
+    {
+       echo "Pais: $this->nombre <br>Capital: $this->capital <br> Region: $this->region";
     }
 }
