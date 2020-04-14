@@ -6,6 +6,10 @@
     POST: Crear recursos.
     PUT: Modificar recursos.
     DELETE: Borrar recursos.
+    GET: entidad -> trae todo
+    GET: entidad ? id=1-> trae datos del elemento indicado.
+    POST: entiedad -> Guardo datos que vienen por post.
+    
 */
 
 
