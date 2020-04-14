@@ -1,12 +1,10 @@
 {
-    "name": "lenovox1carbon/clase2php",
+    "name": "lenovox1carbon/clase2.3",
     "authors": [
         {
             "name": "Carolina Stomboli",
             "email": "carostomboli@hotmail.com"
         }
     ],
-    "require": {
-        "namnv609/php-rest-countries": "^1.0"
-    }
+    "require": {}
 }

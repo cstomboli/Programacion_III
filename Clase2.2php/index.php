@@ -3,9 +3,9 @@
 /*
     GET: Obtener recursos. Pedir datos.
     GET id: Obtenemos uno especifico.
-    POST: Creamos recursos.
-    PUT: Modifica.
-    DELETE: Boraa.
+    POST: Crear recursos.
+    PUT: Modificar recursos.
+    DELETE: Borrar recursos.
 */
 
 
