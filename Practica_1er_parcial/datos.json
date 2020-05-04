@@ -1,1 +1,1 @@
-[{"id":1,"nombre":"sol","dni":"31254456","obra_social":"Accord","clave":"232323","tipo":"user"},{"id":2,"nombre":"caro","dni":"31254456","obra_social":"Ioma","clave":"123456","tipo":"admin"}]
+[{"id":1,"nombre":"sol","dni":"31254456","obra_social":"Accord","clave":"232323","tipo":"user"},{"id":2,"nombre":"caro","dni":"31254456","obra_social":"Ioma","clave":"123456","tipo":"admin"},{"id":3,"nombre":"tito","dni":"200200","obra_social":"Ioma","clave":"2020","tipo":"user"}]

@@ -26,39 +26,68 @@ class Datos{
         return $rta;
     }
 
-    public static function guardarVenta($archivo, $datos)
+    public static function guardarVenta($archivo, $datos) //anda
     {
-        $pfile=fopen($archivo, 'a+');
+        $array=Datos::LeerVentas($archivo);
+        if(!is_null($array))
+        {
+            $array=array();
+        }
+        array_push($array,$datos); 
+        $pfile=fopen($archivo, 'a+'); 
         $cadena=serialize($datos);        
         $rta=fwrite($pfile,$cadena.PHP_EOL);
         return $rta;
     }
-
-    public static function LeerVentas($archivo)
+    /*
+    public static function guardarVenta($archivo, $datos) //anda
     {
-        $file = fopen($archivo,'r');
-        while(!feof($file)){
-
-            $linea = unserialize(fgets($file));                    
-        } 
-        //array_push($stringJson,$datos); //esto agrega al final de lo q hay 
-        $rta = $linea;  //convierto el objetos a JSON con json_encode      
-        fclose($file);
+        $pfile=fopen($archivo, 'w');//anda bien con a+ 
+        $cadena=serialize($datos);        
+        $rta=fwrite($pfile,$cadena.PHP_EOL);
         return $rta;
+    }
+    */
+    public static function leerVentas($archivo)
+    {
+        $response = false;
+        if(file_exists($archivo)){
+            $pFile = fopen($archivo,'r');
+            if(!is_null($pFile)){
+                $response = array();
+                while(!feof($pFile)){
+                    array_push($response,unserialize(fgets($pFile)));
+                }           
+                fclose($pFile);
+                array_pop($response);
+           }
+        }
+        //var_dump($response);
+        return $response;
         /*
-        
-       
-        $cadena=unserialize($file); 
-        var_dump($cadena);   
-       /*
-        $rta = '';    
-               
-        return $rta; /*
+        $file = fopen($archivo,'r');
+        $rta = ''; 
+        if(!is_null($file))
+        {
+            $rta=array();
+            while(!feof($file)){
 
-        $pfile=fopen($archivo, 'r');
-        $cadena=unserialize($archivo);        
-        $rta=fgets($pfile,$cadena);
-        return $rta; */
+                array_push($rta,unserialize(fgets($file)));
+                $linea = fgets($file);
+                $linealeer =unserialize($linea);
+
+                if( $linealeer != "")
+                {
+                    $retorno=$linealeer;
+                    //var_dump(($linealeer));     //asi lo pude solucionar
+                     array_push($rta,$linealeer);  
+                }                        
+            } 
+            fclose($file);
+            array_pop($rta);
+        }  
+        var_dump($rta);               
+        return $rta;   */
     }
 
     public static function modificarJson($archivo,$id, $cantidad)

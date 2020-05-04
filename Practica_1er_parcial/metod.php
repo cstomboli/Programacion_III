@@ -62,14 +62,13 @@ class Metod{
                                 $producto->GuardarProducto(); 
                                 $folder= 'imagenes/'; 
                                 move_uploaded_file($tmp_name,$folder.$nombre); //la mueve bien, no la muestra!
-                                var_dump($producto);
+                                //var_dump($producto);
                                 echo "Producto creado correctamente.";
                             }
                             else
                             {
                                 echo "no entra";
                             }
-                            echo"Es admin";
                         }                       
                         else
                         {
@@ -81,50 +80,55 @@ class Metod{
                         $headers = getallheaders();
                         $mitoken=$headers['token']??'';
 
-                        if(($usuario=Usuarios::BuscarAdmin($mitoken))==false)
-                        {
-                            if(isset($_POST['id_producto']) && isset($_POST['cantidad']) && isset($_POST['ususario'])) 
+                        //if(Usuarios::validarIdToken($mitoken, $_POST['ususario']))// no anda
+                        //{
+                            if(($usuario=Usuarios::BuscarAdmin($mitoken))==false)
                             {
-                                if($montoVenta=(Producto::Venta($_POST['id_producto'],$_POST['cantidad'],$_POST['ususario'])))
+                                if(isset($_POST['id_producto']) && isset($_POST['cantidad']) && isset($_POST['ususario'])) 
                                 {
-                                    echo "El monto de la venta es $montoVenta";
-                                    //modifica bien el stock, ver si agregando mas productos, igual anda bien
-                                    //guardar en ventas.xxx, serializando!
-                                    $venta=new Ventas($_POST['id_producto'],$_POST['cantidad'],$_POST['ususario']);
-                                    $venta->guardarVenta();
-                                   //$cadena=serialize($venta); esto anda
-                                   //echo "$cadena";
+                                    if($montoVenta=(Producto::Venta($_POST['id_producto'],$_POST['cantidad'],$_POST['ususario'])))
+                                    {
+                                       // $respuesta=Usuarios::validarIdToken($mitoken, $_POST['ususario']);
+                                        echo "El monto de la venta es $montoVenta";
+                                        //modifica bien el stock, ver si agregando mas productos, igual anda bien
+                                        //guardar en ventas.xxx, serializando!
+                                        $venta=new Ventas($_POST['id_producto'],$_POST['cantidad'],$_POST['ususario']);
+                                        $venta->guardarVenta();
+                                       //$cadena=serialize($venta); esto anda
+                                       //echo "$cadena";
+                                        
+                                    }
                                     
                                 }
-                                
                             }
-                        }
-                    break;
+                            else{
+                                echo"Solo usuarios pueden vender, Usted es admin";
+                            }
+                        //}                       
+                        break;
                 }
-                break;
+            break;
             case 'GET':
                 switch ($this->path_info) 
                 {
                     case '/stock':
                         var_dump(Producto::LeerProducto()); //ver si agrego mas, los lee a todos.
                     break;
-                        
-                    case '/lista': //La funcion muestra lo que le indican, si es admin o user.
-                        if(isset($_GET['tipo']))
-                        {
-                            $usuario=Usuarios::BuscarTipo($_GET['tipo']);                            
-                        }                       
-                    break;
-                    
+                                            
                     case '/ventas':
                         $headers = getallheaders();
                         $mitoken=$headers['token']??'';
+                        
                         if($usuario=Usuarios::BuscarAdmin($mitoken))
                         {
-                            var_dump(ventas::leerVentas());
-                            if(($usuario=Usuarios::BuscarAdmin($mitoken))==false)
-                            {
-                            }
+                            echo "entra"; //Entra!
+                           var_dump(Ventas::leer());
+                           //var_dump($ventas);                            
+                        }
+                        elseif(($usuario=Usuarios::BuscarAdmin($mitoken))==false)
+                        {
+                            echo "venta usuarui";
+                            Ventas::ventasUsuario($mitoken);
                         }
                     break;
                 }

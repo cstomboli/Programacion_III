@@ -87,13 +87,14 @@ class Usuarios{
         return $retorno;
     }
 
+    /* NO ESTA EN USO
     public static function BuscarToken($token)
     {
         $key= "example_key";
         try{
             $decoded = JWT::decode($token, $key, array('HS256'));
            /* $retorno=array("Mail"=>$decoded->email, "Clave"=>$decoded->clave, "Nombre"=>$decoded->nombre, 
-            "Apellido"=>$decoded->apellido, "Telefono"=>$decoded->telefono, "Tipo"=>$decoded->tipo);*/
+            "Apellido"=>$decoded->apellido, "Telefono"=>$decoded->telefono, "Tipo"=>$decoded->tipo); //hasta aca comentado
 
             echo "Mail: ". $decoded->email . PHP_EOL . "Clave: " .$decoded->clave . PHP_EOL . "Nombre: ". $decoded->nombre 
             . PHP_EOL . "Apellido: " . $decoded->apellido . PHP_EOL . "Telefono: ". $decoded->telefono . PHP_EOL . "Tipo: ".$decoded->tipo;
@@ -101,7 +102,7 @@ class Usuarios{
         catch(Exception $e){
             echo "Token no valido -> ". $e->getMessage();
         }
-    }
+    }   */
 
     public static function BuscarTipo($tipo)
     {
@@ -122,6 +123,36 @@ class Usuarios{
             }
         }
         return $responde;        
+    }
+
+    public static function validarIdToken($token, $usuario)
+    {
+        $key= "example_key";
+        $retorno = false;
+        try{
+            $decoded = JWT::decode($token, $key, array('HS256'));
+            if($decoded->nombre == $usuario)
+            {
+                echo"entra";
+                if(BuscarTipo($decoded->tipo)==false)
+                {
+                    $retorno=true;
+                }
+                else
+                {
+                    echo "no es usuario, es admin";
+                }
+            }
+            else
+            {
+                echo "a ver tipo $decoded->tipo";
+                echo "el usuario ingresado no coincide con el token$decoded->nombre y $usuario";
+            }            
+        }
+        catch(Exception $e){
+            echo "Token no valido -> ". $e->getMessage();
+        }
+        return $retorno;
     }
 
 }
