@@ -1,0 +1,2 @@
+O:6:"ventas":4:{s:2:"id";s:1:"1";s:8:"cantidad";s:1:"1";s:7:"usuario";s:3:"sol";s:4:"tipo";N;}
+O:6:"ventas":4:{s:2:"id";s:1:"1";s:8:"cantidad";s:1:"1";s:7:"usuario";s:4:"caro";s:4:"tipo";N;}

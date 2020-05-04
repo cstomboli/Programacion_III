@@ -19,7 +19,9 @@ $payload = array(
 // me va a tener q enviar el token
 
 $headers = getallheaders();
-$mitoken=$headers['mi_token']??'';
+$mitoken=$headers['mi_token'];
+print_r($mitoken);
+
 try{
     $decoded = JWT::decode($mitoken, $key, array('HS256'));
     print_r($decoded);

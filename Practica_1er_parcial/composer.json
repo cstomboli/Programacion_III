@@ -1,10 +1,12 @@
 {
-    "name": "lenovox1carbon/clase3",
+    "name": "lenovox1carbon/practica-parcial",
     "authors": [
         {
             "name": "Carolina Stomboli",
             "email": "carostomboli@hotmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "firebase/php-jwt": "^5.2"
+    }
 }

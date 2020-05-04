@@ -1,0 +1,9 @@
+guardar una foto video clase 3 1.48
+file.php
+Postman: POST body form-data me da la opcion de archivo
+
+una forma de copiar una foto en un archivo es
+
+var_dump($f
+
+hasta 1.56

@@ -2,10 +2,9 @@
 
 include 'persona.php';
 
-$request_method = $_SERVER [ 'REQUEST_METHOD' ];
-$path_info = $_SERVER [ 'PATH_INFO' ];
+$request_method = $_SERVER ['REQUEST_METHOD'];
+$path_info = $_SERVER ['PATH_INFO'];
 $datos;
-
 
 switch ($request_method) 
 {
@@ -17,7 +16,7 @@ switch ($request_method)
                 {
                     $persona= new Persona($_POST['nombre'], $_POST['apellido']);
                     echo json_encode($persona);
-                    $persona->Guardar();
+                    $persona->Guardar(); // ANDA mal
                 }
                 else{
                     echo "nop";
@@ -39,10 +38,15 @@ switch ($request_method)
         switch ($path_info) 
         {
             case '/persona':
-                if(isset($nombre))
+                if(isset($_GET['nombre']) && isset($_GET['apellido']))
                 {
-                    $persona= new Persona($nombre);
-                    echo "$persona";
+                    $persona= new Persona($_GET['nombre'], $_GET['apellido']);
+                    echo json_encode($persona); //FUNCIONA
+                    $persona->Leer();
+                }
+                else
+                {
+                    echo "no hay ninguna persona cargada";
                 }
                 break;
                 /*
@@ -56,6 +60,7 @@ switch ($request_method)
                 echo "No ";
                 break;
         }
+        break;
     default:
         echo"Metodo invalido";
         break;
