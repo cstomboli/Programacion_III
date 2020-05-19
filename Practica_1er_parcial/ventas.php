@@ -20,12 +20,12 @@ class Ventas{
 
     public function guardarVenta()
     {
-        Datos::guardarVenta('ventas.txt', $this);
+        Datos::guardarVenta('ventas.txt', $this); //aca falta tmb return
     }
 
     public static function leer()
     {
-        Datos::leerVentas('ventas.txt');
+       return Datos::leerVentas('ventas.txt');
     }
 
     public static function ventasUsuario($token)

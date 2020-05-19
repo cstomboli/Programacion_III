@@ -55,13 +55,18 @@ class Metod{
                         {
                             if(isset($_POST['producto']) && isset($_POST['marca']) && isset($_POST['precio']) && isset($_POST['stock'])  && isset($_FILES['foto'])) 
                             {
-                                $tmp_name=$_FILES['foto']['tmp_name'];
-                                $name=$_FILES['foto']['name'];
-                                $nombre=$_POST['marca'].'-'.$name.'-'.time();
-                                $producto= new Producto($_POST['producto'], $_POST['marca'], $_POST['precio'], $_POST['stock'], $nombre, null);
+                                move_uploaded_file($_FILES['foto']['tmp_name'], 'imagenes/'.$_FILES['foto']['name']);
+                                Producto::crearMarcaDeagua('imagenes/'.$_FILES['foto']['name'],'imagenes/' .$_FILES['foto']['name'] . 'marca_de_agua.jpg');
+
+
+                                //$tmp_name=$_FILES['foto']['tmp_name'];
+                                //$name=$_FILES['foto']['name'];
+                                //$nombre=$_POST['marca'].'-'.$name.'-'.time();
+                                $producto= new Producto($_POST['producto'], $_POST['marca'], $_POST['precio'], $_POST['stock'], $_FILES['foto']['name'], null);
                                 $producto->GuardarProducto(); 
-                                $folder= 'imagenes/'; 
-                                move_uploaded_file($tmp_name,$folder.$nombre); //la mueve bien, no la muestra!
+                                //$folder= 'imagenes/'; 
+                                //move_uploaded_file($tmp_name,$folder.$nombre); //la mueve bien, no la muestra!
+                                //Producto::crearMarcaDeagua($folder.$nombre,'imagenes/marca_de_agua.jpg');
                                 //var_dump($producto);
                                 echo "Producto creado correctamente.";
                             }

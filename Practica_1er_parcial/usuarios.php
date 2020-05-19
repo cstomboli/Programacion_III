@@ -49,11 +49,11 @@ class Usuarios{
                 {
                     $retorno=true;
                     
-                    $key= "example_key";
+                    $key= "example_key";        //revisar los parametros
                     $payload = array(
-                        "email" => $nombre,
+                        "nombre" => $nombre,
                         "clave" => $clave,
-                        "nombre"=>$value->dni,
+                        "dni"=>$value->dni,
                         "apellido"=>$value->obra_social,
                         "telefono"=>$value->id,
                         "tipo"=>$value->tipo
@@ -76,7 +76,7 @@ class Usuarios{
         $key= "example_key";
         try{
             $decoded = JWT::decode($token, $key, array('HS256'));
-            if($decoded->tipo == 'admin')
+            if($decoded->tipo == 'admin' || $decoded->tipo == 'administrador')
             {
                 $retorno=true; 
             }
