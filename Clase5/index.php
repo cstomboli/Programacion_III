@@ -1,32 +1,37 @@
 <?php
 
 //echo "holas";
-
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
 //require __DIR__ . '/vendor/autoload.php'; //no anda la ruta
 require __DIR__ . '/vendor/autoload.php';
-
 //ver que .htcaccess cuando esta bien escito aparece una ruedita de configuracion.
+//por las dudas puse esto ahi RewriteBase /Programacion_III/Clase5
+
 //http://www.slimframework.com/
 $app = AppFactory::create();
 $app-> setBasePath('/Programacion_III/Clase5');
-
+$app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true); //muestra errores
 
 $app->post('/persona', function(Request $request, Response $response){
+    //echo "hola";
     $body= $request->getParsedBody(); //ver si anda
     $files= $_FILES;//getUploadedFiles();
     $rta= array("succes"=> true, "data"=> "POST", "body"=>$body, "files"=>$files);
     $rtaJson = json_encode($rta);
+    
     $response->getBody()->write($rtaJson);//("Hello world!");
     return $response
     ->withHeader('Content-Type', 'application/json')
     ->withStatus(302);
+    
 
 });
+
+/*
 
 $app->get('/persona/{id}', function (Request $request, Response $response, array $args) { //$args recibe las variables, q yo le mande a mi ruta
     // '/persona' original  // '/persona[/]' esto significa que puedo escribir en el postman /persona o /persona/
@@ -75,5 +80,7 @@ $app->group('/alumno', function($group){
         ->withStatus(302);
     });
 });
+
+*/
 
 $app->run();

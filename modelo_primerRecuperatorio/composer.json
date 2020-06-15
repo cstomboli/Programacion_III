@@ -7,6 +7,8 @@
         }
     ],
     "require": {
-        "firebase/php-jwt": "^5.2"
+        "firebase/php-jwt": "^5.2",
+        "slim/psr7": "^1.1",
+        "slim/slim": "4.*"
     }
 }
