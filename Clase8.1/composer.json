@@ -1,0 +1,14 @@
+{
+    "name": "lenovox1carbon/clase8.1",
+    "authors": [
+        {
+            "name": "Carolina Stomboli",
+            "email": "carostomboli@hotmail.com"
+        }
+    ],
+    "require": {
+        "slim/psr7": "^1.1",
+        "slim/slim": "4.*",
+        "illuminate/database": "^7.17"
+    }
+}
