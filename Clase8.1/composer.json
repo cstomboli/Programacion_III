@@ -9,6 +9,7 @@
     "require": {
         "slim/psr7": "^1.1",
         "slim/slim": "4.*",
-        "illuminate/database": "^7.17"
+        "illuminate/database": "^7.17",
+        "illuminate/events": "^7.17"
     }
 }
