@@ -1,3 +1,9 @@
+.htaccess
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
 composer init     			composer install
 composer require firebase/php-jwt 
 //jwt.com o algo asi
